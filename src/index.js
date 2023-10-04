@@ -3,30 +3,58 @@ import ReactDOM from 'react-dom/client';
 
 import './index.css'
  //first project
-const firstBook = {
-  author : "Chris Ferrie",
-  title : "8 Little Planets",
-  img : "https://images-na.ssl-images-amazon.com/images/I/91JFjdT4WCL._AC_UL600_SR600,400_.jpg"
-}
-const secondBook = {
+
+const books = [
+  {
+    author: "Chris Ferrie",
+    title: "8 Little Planets",
+    img: "https://images-na.ssl-images-amazon.com/images/I/91JFjdT4WCL._AC_UL600_SR600,400_.jpg",
+    id:1
+  },
+  {
   author: "Rebecca Yarros",
   title: "Iron Flame (The Empyrean, 2) ",
   img: "https://images-na.ssl-images-amazon.com/images/I/91ke43dIxkL._AC_UL600_SR600,400_.jpg",
-};
-// const author = "Chris Ferrie";
-// const title = "8 Little Planets";
-// const img = "https://images-na.ssl-images-amazon.com/images/I/91JFjdT4WCL._AC_UL600_SR600,400_.jpg";
+  id:2
+}
+];
+
+
+//iterating data approach 1
+// const BookList = () => {
+//   return (
+//     <section className="booklist">
+//      { books.map((book)=>{
+//       const {img, title, author, id} = book
+//         return <Book img={img} title={title} author={author} key={id} />
+//       })}
+//     </section>
+//   );
+// }
+
+// optimizing approach 1
+// const BookList = () => {
+//   return (
+//     <section className="booklist">
+//      { books.map((book)=>{
+//       // const {img, title, author, id} = book
+//         return <Book book={book} key={book.id} />
+//       })}
+//     </section>
+//   );
+// }
+
+// optimizing approach 2 using spread operator
 const BookList = () => {
   return (
     <section className="booklist">
-      <Book author={firstBook.author} title={firstBook.title} img={firstBook.img} >
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-        <button>click me</button>
-      </Book>
-      <Book author={secondBook.author} title={secondBook.title} img={secondBook.img} />
+      {books.map((book) => {
+        // const {img, title, author, id} = book
+        return <Book {...book} key={book.id} />;
+      })}
     </section>
   );
-}
+};
 
 //----> Using props to make things dynamic
 
