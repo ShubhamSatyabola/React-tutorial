@@ -20,95 +20,39 @@ const books = [
 ];
 
 
-//iterating data approach 1
-// const BookList = () => {
-//   return (
-//     <section className="booklist">
-//      { books.map((book)=>{
-//       const {img, title, author, id} = book
-//         return <Book img={img} title={title} author={author} key={id} />
-//       })}
-//     </section>
-//   );
-// }
 
-// optimizing approach 1
-// const BookList = () => {
-//   return (
-//     <section className="booklist">
-//      { books.map((book)=>{
-//       // const {img, title, author, id} = book
-//         return <Book book={book} key={book.id} />
-//       })}
-//     </section>
-//   );
-// }
-
-// optimizing approach 2 using spread operator
 const BookList = () => {
-  const someValue = 'somevalue'
-  const display = ()=>{
-    console.log(someValue)
+  const getBook = (id) => {
+    const book = books.find(book=>book.id===id)
+    console.log(book)
   }
+  
+  
   return (
     <section className="booklist">
       {/* <EventExamples/> */}
       {books.map((book) => {
         // const {img, title, author, id} = book
-        return <Book {...book} key={book.id} display={display}/>;
+        return <Book {...book} key={book.id} getBook={getBook} />;
       })}
     </section>
   );
 };
 
-// const EventExamples = () => {
-//   const handleFormInput = (e) => {
-//     console.log('handle form input')
-//     console.log(e)
-//   }
-//   const handleButtonClick = () => {
-//     alert ('handle button click')
-//   }
-//   const handleFormSubmission = (e) => {
-//     e.preventDefault()
-//     console.log('form submitted')
-//   }
-//   return <section>
-//     <form onSubmit={handleFormSubmission}>
-//       <h2>Dummy form</h2>
-//       <input type="text" name='example' onChange={handleFormInput} style={{margin:"1rem 0"}}/>
-//     </form>
-//     <button onClick={handleButtonClick}>click me</button>
-//   </section>
-// }
 
-//----> Using props to make things dynamic
 
-//--->approach 1
-
-// const Book = (props) => {
-//   return (
-//     <article className="book">
-//       <img src={props.img} alt={props.title} />
-//       <h2>{props.title}</h2>
-//       <h4>{props.author}</h4>
-//     </article>
-//   );
-// };
 
 // --> approach 2 to use props by destructuring the prop object
-const Book = ({ img, author, title, children,display}) => {
-  // const { img, author, title } = props;
-  // const displayTitle = () =>{
-  //   console.log({title})
-  // }
+const Book = ({ img, author, title, getBook, id}) => {
+  const getSingleBook = () => {
+    getBook(id)
+  }
   return (
     <article className="book">
       <img src={img} alt={title} />
       <h2>{title}</h2>
-      <button onClick={display}>display title</button>
+      <button onClick={()=>getBook(id)}>display title</button>
       <h4>{author}</h4>
-      {children}
     </article>
   );
 };
