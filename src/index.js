@@ -46,15 +46,41 @@ const books = [
 
 // optimizing approach 2 using spread operator
 const BookList = () => {
+  const someValue = 'somevalue'
+  const display = ()=>{
+    console.log(someValue)
+  }
   return (
     <section className="booklist">
+      {/* <EventExamples/> */}
       {books.map((book) => {
         // const {img, title, author, id} = book
-        return <Book {...book} key={book.id} />;
+        return <Book {...book} key={book.id} display={display}/>;
       })}
     </section>
   );
 };
+
+// const EventExamples = () => {
+//   const handleFormInput = (e) => {
+//     console.log('handle form input')
+//     console.log(e)
+//   }
+//   const handleButtonClick = () => {
+//     alert ('handle button click')
+//   }
+//   const handleFormSubmission = (e) => {
+//     e.preventDefault()
+//     console.log('form submitted')
+//   }
+//   return <section>
+//     <form onSubmit={handleFormSubmission}>
+//       <h2>Dummy form</h2>
+//       <input type="text" name='example' onChange={handleFormInput} style={{margin:"1rem 0"}}/>
+//     </form>
+//     <button onClick={handleButtonClick}>click me</button>
+//   </section>
+// }
 
 //----> Using props to make things dynamic
 
@@ -71,12 +97,16 @@ const BookList = () => {
 // };
 
 // --> approach 2 to use props by destructuring the prop object
-const Book = ({ img, author, title, children}) => {
+const Book = ({ img, author, title, children,display}) => {
   // const { img, author, title } = props;
+  // const displayTitle = () =>{
+  //   console.log({title})
+  // }
   return (
     <article className="book">
       <img src={img} alt={title} />
       <h2>{title}</h2>
+      <button onClick={display}>display title</button>
       <h4>{author}</h4>
       {children}
     </article>
