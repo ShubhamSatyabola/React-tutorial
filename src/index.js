@@ -16,13 +16,16 @@ const BookList = () => {
 
   
   return (
-    <section className="booklist">
-      {/* <EventExamples/> */}
-      {books.map((book,index) => {
-        // const {img, title, author, id} = book
-        return <Book {...book} key={book.id} number={index} />;
-      })}
-    </section>
+    <>
+      <h1 className='title'>Amazon Best Selling</h1>
+      <section className="booklist">
+        {/* <EventExamples/> */}
+        {books.map((book, index) => {
+          // const {img, title, author, id} = book
+          return <Book {...book} key={book.id} number={index} />;
+        })}
+      </section>
+    </>
   );
 };
 
