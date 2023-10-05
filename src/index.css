@@ -26,6 +26,7 @@ body{
     border-radius: 2rem;
     padding: 2rem;
     text-align: center;
+    position: relative;
   }
 .book img{
     width: 100%;
@@ -34,4 +35,15 @@ body{
 .book h2{
     margin-top: 1rem;
     font-size: 1rem;
+}
+.number{
+    position:absolute;
+    top:0;
+    left:0;
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    padding: .75rem;
+    border-top-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
